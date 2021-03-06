@@ -1,6 +1,5 @@
 package com.example.validationutiltest.validations;
 
-import com.example.validationutiltest.dto.Person;
 import com.example.validationutiltest.dto.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
