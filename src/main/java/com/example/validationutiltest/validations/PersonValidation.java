@@ -20,22 +20,15 @@ public class PersonValidation implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        Person person1  =  (Person)target;
 
-        ObjectMapper om = new ObjectMapper();
-        String personStringValue ="";
-        Person person =null;
-        try {
-            personStringValue = om.writeValueAsString(target);
-            person =  om.readValue(personStringValue, Person.class);
+        System.out.println("person = " + person1.toString());
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        System.out.println("person = " + person.toString());
+        if(person1.getPid() == ""){
+           errors.rejectValue("pid", "119", "pid는 필수야");
 
-        if(person.getPid() == ""){
-            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pid","9999");
-          //  ValidationUtils.invokeValidator(new StudentValidation(), target,errors);
+            // ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pid","9999");
+            //  ValidationUtils.invokeValidator(new StudentValidation(), target,errors);
         }
     }
 }

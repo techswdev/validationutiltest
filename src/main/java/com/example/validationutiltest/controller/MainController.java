@@ -5,6 +5,8 @@ import com.example.validationutiltest.dto.Student;
 import com.example.validationutiltest.validations.PersonValidation;
 import com.example.validationutiltest.validations.StudentValidation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 @RestController
 @Slf4j
@@ -31,16 +34,30 @@ public class MainController {
 
 
     @GetMapping("/personvalitest")
-    public void personvalitest( @Valid Person person, BindingResult bindingResult) throws IOException {
+    public ResponseEntity<?> personvalitest(@Valid Person person, BindingResult bindingResult) throws IOException {
         log.info("Person : {}", person.toString());
         log.info("bindingResult : {}", bindingResult.toString());
 
 
+        if(bindingResult.hasErrors()) {
+
+            String field = bindingResult.getFieldError().getField();
+            String fieldErroMsg = bindingResult.getFieldError().getDefaultMessage();
+            return new ResponseEntity<>(fieldErroMsg, HttpStatus.BAD_REQUEST);
+        }
+        return null;
+
     }
     @GetMapping("/studentvalitest")
-    public void studentvalitest(@Valid Student student, BindingResult bindingResult){
+    public ResponseEntity<?> studentvalitest(@Valid Student student, BindingResult bindingResult){
         log.info("Student : {}", student.toString());
         log.info("bindingResult : {}", bindingResult.toString());
+        if(bindingResult.hasErrors()) {
 
+            String field = bindingResult.getFieldError().getField();
+            String fieldErroMsg = bindingResult.getFieldError().getDefaultMessage();
+            return new ResponseEntity<>(fieldErroMsg, HttpStatus.BAD_REQUEST);
+        }
+        return null;
     }
 }
