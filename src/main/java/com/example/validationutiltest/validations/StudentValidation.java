@@ -1,5 +1,6 @@
 package com.example.validationutiltest.validations;
 
+import com.example.validationutiltest.dto.Professor;
 import com.example.validationutiltest.dto.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -12,14 +13,20 @@ public class StudentValidation implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        log.info(" StudentValidation supports {}",clazz);
-
         return Student.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        log.info(" StudentValidation validate target {}",target);
+        log.info("validate of student");
 
+        Student student  =  (Student)target;
+
+        if(student.getSId() == ""){
+            errors.rejectValue("sId", "119", "sId는 필수야");
+
+            // ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pid","9999");
+            //  ValidationUtils.invokeValidator(new StudentValidation(), target,errors);
+        }
     }
 }

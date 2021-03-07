@@ -8,10 +8,10 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Person {
+public class Professor {
 
-    private String pname;
-    private String pid;
-    private String pphoneNum;
+    private String pName;
+    private String pId;
+    private String pPhoneNum;
 
 }

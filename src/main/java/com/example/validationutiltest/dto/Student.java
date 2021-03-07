@@ -10,8 +10,7 @@ import lombok.ToString;
 @ToString
 public class Student {
 
-    private String name;
-    private String gender;
-    private String job;
-    private String university;
+    private String sName;
+    private String sId;
+    private String sPhoneNum;
 }

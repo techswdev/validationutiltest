@@ -1,31 +1,26 @@
 package com.example.validationutiltest.validations;
 
-import com.example.validationutiltest.dto.Person;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.validationutiltest.dto.Professor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-@Slf4j
 @Component
-public class PersonValidation implements Validator {
+@Slf4j
+public class ProfessorValidation implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Person.class.equals(clazz);
+        return Professor.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        Person person1  =  (Person)target;
+        Professor professor  =  (Professor)target;
 
-        System.out.println("person = " + person1.toString());
-
-        if(person1.getPid() == ""){
-           errors.rejectValue("pid", "119", "pid는 필수야");
+        if(professor.getPId() == ""){
+           errors.rejectValue("pId", "119", "pid는 필수야");
 
             // ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pid","9999");
             //  ValidationUtils.invokeValidator(new StudentValidation(), target,errors);
