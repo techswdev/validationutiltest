@@ -17,8 +17,8 @@ public class MiddleSchoolController {
 
 
     @PostMapping("/professor")
-    public ResponseEntity<?> professorRegiste(  @RequestBody  @Valid  Professor professor, BindingResult bindingResult)  {
-
+    public ResponseEntity<?> professorRegiste(  @Valid  Professor professor, BindingResult bindingResult)  {
+        log.info("Post middleSchool of professorRegiste : {}",professor.toString());
 
         if(bindingResult.hasErrors()) {
 
@@ -30,8 +30,9 @@ public class MiddleSchoolController {
 
     }
     @PostMapping("/student")
-    public ResponseEntity<?> studentRegister( @RequestBody  @Valid  Student student, BindingResult bindingResult){
+    public ResponseEntity<?> studentRegister(   Student student, BindingResult bindingResult){
 
+        log.info("Post middleSchool of student : {}",student.toString());
 
         if(bindingResult.hasErrors()) {
 

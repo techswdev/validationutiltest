@@ -18,7 +18,6 @@ public class ProfessorValidation implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Professor professor  =  (Professor)target;
-
         if(professor.getPId() == ""){
            errors.rejectValue("pId", "119", "pid는 필수야");
 

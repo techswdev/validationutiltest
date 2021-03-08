@@ -2,10 +2,13 @@ package com.example.validationutiltest.controller;
 
 import com.example.validationutiltest.dto.Professor;
 import com.example.validationutiltest.dto.Student;
+import com.example.validationutiltest.validations.ProfessorValidation;
+import com.example.validationutiltest.validations.StudentValidation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,7 +19,7 @@ import javax.validation.Valid;
 public class HighSchoolController {
 
     @PostMapping("/professor")
-    public ResponseEntity<?> professorRegister( @RequestBody  @Valid  Professor professor, BindingResult bindingResult) {
+    public ResponseEntity<?> professorRegister(  @Valid @RequestBody Professor professor, BindingResult bindingResult) {
 
 
         if(bindingResult.hasErrors()) {
@@ -29,7 +32,7 @@ public class HighSchoolController {
 
     }
     @PostMapping("/student")
-    public ResponseEntity<?> studentRegister( @RequestBody  @Valid  Student student, BindingResult bindingResult){
+    public ResponseEntity<?> studentRegister( @Valid @RequestBody Student student, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
 
